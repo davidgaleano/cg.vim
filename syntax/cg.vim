@@ -34,6 +34,8 @@ syn keyword cgStatement		discard
 syn keyword cgProfile		arbfp1 arbvp1
 syn keyword cgProfile		ps_1_1 ps_1_2 ps_1_3 vs_1_1 vs_2_0 vs_2_x ps_2_0 ps_2_x
 syn keyword cgProfile		fp20 vp20 fp30 vp30
+syn keyword cgProfile		latest
+syn keyword cgProfile		glslv glslf
 " many Cg data types
 syn keyword cgType		bool bool2 bool3 bool4
 syn keyword cgType		bool1x2 bool1x3 bool1x4
@@ -50,6 +52,8 @@ syn keyword cgType		fixed1x2 fixed1x3 fixed1x4
 syn keyword cgType		fixed2x2 fixed2x3 fixed2x4
 syn keyword cgType		fixed3x2 fixed3x3 fixed3x4
 syn keyword cgType		fixed4x2 fixed4x3 fixed4x4
+" 'int' is already a C type
+syn keyword cgType		int2 int3 int4
 " 'float' is already a C type
 syn keyword cgType		float2 float3 float4
 syn keyword cgType		float1x2 float1x3 float1x4
@@ -60,15 +64,35 @@ syn keyword cgType		sampler1D sampler2D sampler3D samplerRECT samplerCUBE
 " compile-time special types
 syn keyword cgType		cint cfloat
 
-" how to disable switch continue case default int break goto double enum union
+syn keyword cgFunction		dot normalize saturate clamp
+syn keyword cgFunction		pow sqrt frac max min log
+" how to disable switch 	continue case default int break goto double enum union
 
 " syn keyword cgSamplerArg	MinFilter MagFilter MipFilter
 syn match cgSamplerArg	/\<\c\(min\|mag\|mip\)filter\>/
-syn keyword cgSamplerArg	AddressU AddressV AddressW
+syn keyword cgSamplerArg	AddressU AddressV AddressW WrapR WrapS WrapT
+syn keyword cgSamplerArg	MaxAnisotropy
 
 " fx
 syn keyword fxStatement		compile asm
-syn keyword fxType		string texture technique pass
+syn keyword fxType		string texture technique pass sampler_state
+
+syn keyword cgRenderState       DepthTestEnable DepthFunc DepthMask
+syn keyword cgRenderState       StencilTestEnable StencilFunc StencilOp
+syn keyword cgRenderState       CullFaceEnable CullFace
+syn keyword cgRenderState       BlendEnable BlendFunc
+syn keyword cgRenderState       PolygonOffset PolygonOffsetFillEnable
+syn keyword cgRenderState       ColorMask
+syn keyword cgRenderState       LineWidth
+
+syn keyword cgStateValue        LinearMipMapLinear LinearMipMapNearest Linear Nearest
+syn keyword cgStateValue        Repeat ClampToEdge
+syn keyword cgStateValue        LEqual Always GEqual
+syn keyword cgStateValue        Keep Replace Zero One
+syn keyword cgStateValue        Back Front
+syn keyword cgStateValue        SrcAlpha OneMinusSrcAlpha
+
+syn keyword cgProgram           VertexProgram FragmentProgram
 
 " syn match cgCast		"\<\(const\|static\|dynamic\|reinterpret\)_cast\s*<"me=e-1
 " syn match cgCast		"\<\(const\|static\|dynamic\|reinterpret\)_cast\s*$"
@@ -79,9 +103,9 @@ syn match cgSwizzle		/\.\(_m[0-3]\{2}\)\{1,4\}/
 syn match cgSwizzle		/\.\(_[1-4]\{2}\)\{1,4\}/
 syn match cgSemantic		/:\s*[A-Z]\w*/
 syn keyword cgStorageClass	in out inout uniform packed const
-syn keyword cgNumber	NPOS
-"syn keyword cgBoolean	true false none
-syn match cgBoolean	/\<\c\(true\|false\|none\)\>/
+syn keyword cgNumber	        NPOS
+"syn keyword cgBoolean	        true false none
+syn match cgBoolean	        /\<\c\(true\|false\|none\)\>/
 
 " The minimum and maximum operators in GNU C++
 syn match cgMinMax "[<>]?"
@@ -97,10 +121,14 @@ if version >= 508 || !exists("did_cg_syntax_inits")
   " HiLink cgCast			cgStatement
   HiLink fxStatement		cgStatement
   HiLink cgProfile		cgStatement
-  HiLink cgSamplerArg		cgStatement
+  HiLink cgSamplerArg		Identifier
   HiLink cgStatement		Statement
   HiLink cgType			Type
+  HiLink cgFunction		Function
   HiLink fxType			Type
+  HiLink cgRenderState		Identifier
+  HiLink cgStateValue		Keyword
+  HiLink cgProgram		Function
   HiLink cgStorageClass		StorageClass
   HiLink cgSemantic		Structure
   HiLink cgNumber		Number
