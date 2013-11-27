@@ -66,6 +66,8 @@ syn keyword cgType		cint cfloat
 
 syn keyword cgFunction		dot normalize saturate clamp
 syn keyword cgFunction		pow sqrt frac max min log
+syn keyword cgFunction		length distance exp reflect
+syn keyword cgFunction		floor cross
 " how to disable switch 	continue case default int break goto double enum union
 
 " syn keyword cgSamplerArg	MinFilter MagFilter MipFilter
