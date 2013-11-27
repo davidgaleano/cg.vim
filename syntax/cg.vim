@@ -89,10 +89,10 @@ syn keyword cgRenderState       LineWidth
 
 syn keyword cgStateValue        LinearMipMapLinear LinearMipMapNearest Linear Nearest
 syn keyword cgStateValue        Repeat ClampToEdge
-syn keyword cgStateValue        LEqual Always GEqual
+syn keyword cgStateValue        Never Less LEqual LessEqual Equal Greater NotEqual GEqual GreaterEqual Always
 syn keyword cgStateValue        Keep Replace Zero One
 syn keyword cgStateValue        Back Front
-syn keyword cgStateValue        SrcAlpha OneMinusSrcAlpha
+syn keyword cgStateValue        DestColor InvDestColor DstAlpha InvDestAlpha SrcAlpha InvSrcAlpha SrcColor InvSrcColor
 
 syn keyword cgProgram           VertexProgram FragmentProgram
 
