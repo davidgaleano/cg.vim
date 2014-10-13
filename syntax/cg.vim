@@ -26,7 +26,7 @@ syn keyword cgStatement		tex1D tex2D tex3D texRECT texCUBE
 syn keyword cgStatement		tex1Dproj tex2Dproj tex3Dproj texRECTproj texCUBEproj
 " syn keyword cgStatement		tex1D_proj tex2D_proj tex3D_proj texRECT_proj texCUBE_proj
 " syn keyword cgStatement		tex1D_bias tex2D_bias tex3D_bias texRECT_bias texCUBE_bias
-syn keyword cgStatement		offsettex2D offsettexRECT offsettex2DScaleBias offsettexRECTScaleBias 
+syn keyword cgStatement		offsettex2D offsettexRECT offsettex2DScaleBias offsettexRECTScaleBias
 syn keyword cgStatement		tex1D_dp3 tex2D_dp3x2 texRECT_dp3x2
 syn keyword cgStatement		tex3D_dp3x3 texCUBE_dp3x3 tex_dp3x2_depth
 syn keyword cgStatement		texCUBE_reflect_dp3x3 texCUBE_reflect_eye_dp3x3
